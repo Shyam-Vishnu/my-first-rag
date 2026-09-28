@@ -1,0 +1,10 @@
+Project Atlas launched on March 12.
+
+Its goal was to help new players understand the first-match experience.
+The team changed the tutorial from eight steps to five steps.
+
+The primary success metric was day-seven retention.
+The guardrail metric was the percentage of players who abandoned the tutorial.
+
+In the first two weeks, tutorial completion increased from 62% to 71%.
+The team has not yet established whether day-seven retention improved.
