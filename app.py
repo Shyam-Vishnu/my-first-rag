@@ -9,6 +9,16 @@ from pypdf import PdfReader
 from rag import ask, index_documents
 
 
+
+import uuid
+from db import init_db, save_question
+
+init_db()
+
+if "session_id" not in st.session_state:
+    st.session_state.session_id = str(uuid.uuid4())
+
+
 def extract_text(uploaded_file) -> str:
     """Read text from a supported uploaded file."""
     filename = uploaded_file.name
@@ -122,6 +132,7 @@ if submission:
                 st.error(f"Could not index documents: {error}")
 
     if question:
+        save_question(st.session_state.session_id, question)
         st.session_state.messages.append({
             "role": "user",
             "content": question,
@@ -139,7 +150,8 @@ if submission:
                         answer, passages = ask(
                             question,
                             st.session_state.records,
-                        )
+                            history=st.session_state.messages[:-1],
+)
 
                     st.write(answer)
 
